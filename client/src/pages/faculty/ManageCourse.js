@@ -5,7 +5,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import axios from 'axios';
 
 const ManageCourse = () => {
-  const { user } = useAuth();
+  // ...existing code...
   const navigate = useNavigate();
   const { courseId } = useParams();
   const [courseData, setCourseData] = useState({

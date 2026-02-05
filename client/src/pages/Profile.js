@@ -6,7 +6,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 
 const Profile = () => {
   // Profile component for user settings
-  const { user, updateProfile, refreshUser } = useAuth();
+  const { user, updateProfile } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     bio: '',
@@ -64,7 +64,7 @@ const Profile = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('https://eduspark-nxre.onrender.com/api/auth/change-password', {
+      await axios.put('https://eduspark-nxre.onrender.com/api/auth/change-password', {
         currentPassword: passwordData.currentPassword,
         newPassword: passwordData.newPassword
       }, {
@@ -92,7 +92,7 @@ const Profile = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('https://eduspark-nxre.onrender.com/api/auth/forgot-password', {
+      await axios.post('https://eduspark-nxre.onrender.com/api/auth/forgot-password', {
         email: user.email
       });
 

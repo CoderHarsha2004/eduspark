@@ -12,7 +12,7 @@ import CreateCourse from './pages/faculty/CreateCourse';
 import ManageCourse from './pages/faculty/ManageCourse';
 import ManageStudents from './pages/faculty/ManageStudents';
 import CreateQuizAssessment from './pages/faculty/CreateQuizAssessment';
-import PostAnnouncement from './pages/faculty/PostAnnouncement';
+// ...existing code...
 import GradeSubmissions from './pages/faculty/GradeSubmissions';
 import StudentDashboard from './pages/student/StudentDashboard';
 import StudentAssignments from './pages/student/StudentAssignments';
@@ -27,7 +27,7 @@ import Navbar from './components/Navbar';
 import LoadingSpinner from './components/LoadingSpinner';
 
 function App() {
-  const { user, loading } = useAuth();
+  const { loading } = useAuth();
 
   if (loading) {
     return <LoadingSpinner />;

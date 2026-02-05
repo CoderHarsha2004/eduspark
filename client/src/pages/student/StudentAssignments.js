@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../../contexts/AuthContext';
@@ -13,46 +13,35 @@ const StudentAssignments = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all'); // all, pending, submitted, graded
   const [refreshing, setRefreshing] = useState(false);
-
-  useEffect(() => {
-    fetchAssignments();
-  }, [fetchAssignments]);
-
-  // Refresh assignments when component mounts (useful when returning from quiz)
-  useEffect(() => {
-    const handleFocus = () => fetchAssignments();
-    window.addEventListener('focus', handleFocus);
-    return () => window.removeEventListener('focus', handleFocus);
-  }, [fetchAssignments]);
-
-  const fetchAssignments = async (showRefreshing = false) => {
+  
+  const fetchAssignments = useCallback(async (showRefreshing = false) => {
     try {
       if (showRefreshing) setRefreshing(true);
-
+  
       // Get enrolled courses first
       const coursesRes = await axios.get('https://eduspark-nxre.onrender.com/api/courses/student/enrolled');
       const enrolledCourses = coursesRes.data.courses;
-
+  
       // Get assignments for each enrolled course
       const assignmentsPromises = enrolledCourses.map(course =>
         axios.get(`https://eduspark-nxre.onrender.com/api/assignments/course/${course._id}`)
       );
-
+  
       const assignmentsResponses = await Promise.all(assignmentsPromises);
       const allAssignments = assignmentsResponses.flatMap(res => res.data.assignments);
-
+  
       // Add course info and submission status to each assignment
       const assignmentsWithDetails = allAssignments.map(assignment => {
         const course = enrolledCourses.find(c => c._id === assignment.course.toString());
         const submission = assignment.submissions.find(s => (s.student._id || s.student).toString() === user._id);
-
+  
         console.log(`Assignment: ${assignment.title}, Submissions:`, assignment.submissions.map(s => ({
           student: s.student.toString(),
           grade: s.grade,
           submittedAt: s.submittedAt
         })));
         console.log(`User ID: ${user._id}, Found submission:`, submission);
-
+  
         return {
           ...assignment,
           courseTitle: course?.title || 'Unknown Course',
@@ -61,7 +50,7 @@ const StudentAssignments = () => {
           status: submission ? (submission.grade !== undefined && submission.grade !== null ? 'graded' : 'submitted') : 'pending'
         };
       });
-
+  
       setAssignments(assignmentsWithDetails);
     } catch (error) {
       console.error('Error fetching assignments:', error);
@@ -69,7 +58,19 @@ const StudentAssignments = () => {
       setLoading(false);
       setRefreshing(false);
     }
-  };
+  }, [user._id]);
+
+  
+  useEffect(() => {
+    fetchAssignments();
+  }, [fetchAssignments]);
+  
+  useEffect(() => {
+    const handleFocus = () => fetchAssignments();
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
+  }, [fetchAssignments]);
+    // ...existing code...
 
   const filteredAssignments = assignments.filter(assignment => {
     if (filter === 'all') return true;
@@ -94,7 +95,7 @@ const StudentAssignments = () => {
     }
   };
 
-  if (loading) {
+  if (loarectifyding) {
     return <LoadingSpinner />;
   }
 

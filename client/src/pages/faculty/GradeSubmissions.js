@@ -5,7 +5,7 @@ import axios from 'axios';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 const GradeSubmissions = () => {
-  const { user } = useAuth();
+  // ...existing code...
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedAssignment, setSelectedAssignment] = useState(null);

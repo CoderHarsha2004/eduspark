@@ -5,7 +5,7 @@ import axios from 'axios';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 const AdminUsers = () => {
-  const { user } = useAuth();
+  // ...existing code...
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all'); // all, faculty, student, pending, approved, blocked

@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext';
-import LoadingSpinner from '../../components/LoadingSpinner';
+// ...existing code...
 
 const CreateQuizAssessment = () => {
-  const { user } = useAuth();
+  // ...existing code...
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [selectedCourse, setSelectedCourse] = useState(null);
+  // ...existing code...
   const [formData, setFormData] = useState({
     courseId: '',
     title: '',

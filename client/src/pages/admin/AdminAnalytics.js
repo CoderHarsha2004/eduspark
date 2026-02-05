@@ -5,7 +5,7 @@ import axios from 'axios';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 const AdminAnalytics = () => {
-  const { user } = useAuth();
+  // ...existing code...
   const [analytics, setAnalytics] = useState({
     totalUsers: 0,
     totalCourses: 0,
