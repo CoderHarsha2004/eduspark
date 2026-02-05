@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useAuth } from '../../contexts/AuthContext';
+// ...existing code...
 import axios from 'axios';
 import LoadingSpinner from '../../components/LoadingSpinner';
 

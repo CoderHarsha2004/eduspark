@@ -14,7 +14,7 @@ const Login = () => {
 
   const { login } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
+  // ...existing code...
 
   // ...existing code...
 

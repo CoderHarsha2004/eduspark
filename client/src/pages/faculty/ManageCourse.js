@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+// ...existing code...
 import axios from 'axios';
 
 const ManageCourse = () => {
