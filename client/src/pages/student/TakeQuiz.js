@@ -17,11 +17,11 @@ const TakeQuiz = () => {
 
   useEffect(() => {
     fetchAssignment();
-  }, [assignmentId]);
+  }, [assignmentId, fetchAssignment]);
 
   const fetchAssignment = async () => {
     try {
-      const response = await axios.get(`/api/assignments/${assignmentId}`);
+      const response = await axios.get(`https://eduspark-nxre.onrender.com/api/assignments/${assignmentId}`);
       setAssignment(response.data.assignment);
 
       // Initialize answers object
@@ -75,7 +75,7 @@ const TakeQuiz = () => {
 
       console.log('Submitting quiz answers:', submissionData);
 
-      const response = await axios.post(`/api/assignments/${assignmentId}/submit-quiz`, submissionData);
+      const response = await axios.post(`https://eduspark-nxre.onrender.com/api/assignments/${assignmentId}/submit-quiz`, submissionData);
 
       console.log('Quiz submitted successfully:', response.data);
       setSubmissionResult(response.data);

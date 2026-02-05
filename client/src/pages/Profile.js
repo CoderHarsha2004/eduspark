@@ -64,7 +64,7 @@ const Profile = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('/api/auth/change-password', {
+      const response = await axios.put('https://eduspark-nxre.onrender.com/api/auth/change-password', {
         currentPassword: passwordData.currentPassword,
         newPassword: passwordData.newPassword
       }, {
@@ -92,7 +92,7 @@ const Profile = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('/api/auth/forgot-password', {
+      const response = await axios.post('https://eduspark-nxre.onrender.com/api/auth/forgot-password', {
         email: user.email
       });
 

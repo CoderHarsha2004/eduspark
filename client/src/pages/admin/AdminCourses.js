@@ -14,7 +14,7 @@ const AdminCourses = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get('/api/courses/admin/all');
+      const response = await axios.get('https://eduspark-nxre.onrender.com/api/courses/admin/all');
       setCourses(response.data.courses);
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -25,7 +25,7 @@ const AdminCourses = () => {
 
   const handleCourseStatusChange = async (courseId, newStatus) => {
     try {
-      await axios.put(`/api/courses/${courseId}`, { status: newStatus });
+      await axios.put(`https://eduspark-nxre.onrender.com/api/courses/${courseId}`, { status: newStatus });
       // Update local state
       setCourses(courses.map(c =>
         c._id === courseId ? { ...c, status: newStatus } : c
@@ -38,7 +38,7 @@ const AdminCourses = () => {
   const handleDeleteCourse = async (courseId, courseTitle) => {
     if (window.confirm(`Are you sure you want to delete course "${courseTitle}"? This action cannot be undone.`)) {
       try {
-        await axios.delete(`/api/courses/${courseId}`);
+        await axios.delete(`https://eduspark-nxre.onrender.com/api/courses/${courseId}`);
         // Remove course from local state
         setCourses(courses.filter(c => c._id !== courseId));
         alert('Course deleted successfully');

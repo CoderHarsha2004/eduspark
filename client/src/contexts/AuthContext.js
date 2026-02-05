@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     const checkAuth = async () => {
       if (token) {
         try {
-          const response = await axios.get('/api/auth/profile');
+          const response = await axios.get('https://eduspark-nxre.onrender.com/api/auth/profile');
           setUser(response.data.user);
           setNotifications(response.data.user.notifications || []);
           setUnreadCount((response.data.user.notifications || []).filter(n => !n.read).length);
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
+      const response = await axios.post('https://eduspark-nxre.onrender.com/api/auth/login', { email, password });
       const { token: newToken, user: userData } = response.data;
 
       localStorage.setItem('token', newToken);
@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await axios.post('/api/auth/register', userData);
+      const response = await axios.post('https://eduspark-nxre.onrender.com/api/auth/register', userData);
       return { success: true, message: response.data.message };
     } catch (error) {
       return {
@@ -91,7 +91,7 @@ export const AuthProvider = ({ children }) => {
 
   const updateProfile = async (profileData) => {
     try {
-      const response = await axios.put('/api/auth/profile', profileData);
+      const response = await axios.put('https://eduspark-nxre.onrender.com/api/auth/profile', profileData);
       setUser(response.data.user);
       return { success: true };
     } catch (error) {
@@ -104,7 +104,7 @@ export const AuthProvider = ({ children }) => {
 
   const refreshUser = async () => {
     try {
-      const response = await axios.get('/api/auth/profile');
+      const response = await axios.get('https://eduspark-nxre.onrender.com/api/auth/profile');
       setUser(response.data.user);
       setNotifications(response.data.user.notifications || []);
       setUnreadCount((response.data.user.notifications || []).filter(n => !n.read).length);
@@ -115,7 +115,7 @@ export const AuthProvider = ({ children }) => {
 
   const markNotificationAsRead = async (notificationId) => {
     try {
-      await axios.put(`/api/auth/notifications/${notificationId}/read`);
+      await axios.put(`https://eduspark-nxre.onrender.com/api/auth/notifications/${notificationId}/read`);
       setNotifications(prev =>
         prev.map(n => n._id === notificationId ? { ...n, read: true } : n)
       );
@@ -127,7 +127,7 @@ export const AuthProvider = ({ children }) => {
 
   const markAllNotificationsAsRead = async () => {
     try {
-      await axios.put('/api/auth/notifications/mark-all-read');
+      await axios.put('https://eduspark-nxre.onrender.com/api/auth/notifications/mark-all-read');
       setNotifications(prev => prev.map(n => ({ ...n, read: true })));
       setUnreadCount(0);
     } catch (error) {

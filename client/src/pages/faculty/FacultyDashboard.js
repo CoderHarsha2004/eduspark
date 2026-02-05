@@ -23,8 +23,8 @@ const FacultyDashboard = () => {
   const fetchDashboardData = async () => {
     try {
       const [coursesRes, assignmentsRes] = await Promise.all([
-        axios.get('/api/courses/faculty/my-courses'),
-        axios.get('/api/assignments/faculty/stats')
+        axios.get('https://eduspark-nxre.onrender.com/api/courses/faculty/my-courses'),
+        axios.get('https://eduspark-nxre.onrender.com/api/assignments/faculty/stats')
       ]);
 
       const coursesData = coursesRes.data.courses;

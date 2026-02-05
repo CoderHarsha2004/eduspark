@@ -19,12 +19,12 @@ const GradeSubmissions = () => {
   const fetchAssignments = async () => {
     try {
       // Get faculty's courses
-      const coursesRes = await axios.get('/api/courses/faculty/my-courses');
+      const coursesRes = await axios.get('https://eduspark-nxre.onrender.com/api/courses/faculty/my-courses');
       const courses = coursesRes.data.courses;
 
       // Get assignments for each course
       const assignmentsPromises = courses.map(course =>
-        axios.get(`/api/assignments/course/${course._id}`)
+        axios.get(`https://eduspark-nxre.onrender.com/api/assignments/course/${course._id}`)
       );
 
       const assignmentsResponses = await Promise.all(assignmentsPromises);
@@ -72,7 +72,7 @@ const GradeSubmissions = () => {
     }
 
     try {
-      await axios.put(`/api/assignments/${assignmentId}/submissions/${studentId}`, {
+      await axios.put(`https://eduspark-nxre.onrender.com/api/assignments/${assignmentId}/submissions/${studentId}`, {
         grade: parseInt(gradeData.grade),
         feedback: gradeData.feedback || ''
       });

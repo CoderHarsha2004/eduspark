@@ -16,7 +16,7 @@ const Courses = () => {
       const params = {};
       if (searchTerm) params.search = searchTerm;
 
-      const response = await axios.get('/api/courses/published', { params });
+      const response = await axios.get('https://eduspark-nxre.onrender.com/api/courses/published', { params });
       // Remove duplicates based on _id
       const uniqueCourses = response.data.courses.filter((course, index, self) =>
         index === self.findIndex(c => c._id === course._id)
@@ -35,7 +35,7 @@ const Courses = () => {
 
   const handleEnroll = async (courseId) => {
     try {
-      await axios.post(`/api/courses/${courseId}/enroll`);
+      await axios.post(`https://eduspark-nxre.onrender.com/api/courses/${courseId}/enroll`);
       alert('Successfully enrolled in the course!');
       // Refresh courses to update enrollment status
       fetchCourses();

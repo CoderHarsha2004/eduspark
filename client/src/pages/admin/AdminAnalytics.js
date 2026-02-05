@@ -25,8 +25,8 @@ const AdminAnalytics = () => {
     try {
       // Get all courses with enrollment data
       const [usersRes, coursesRes] = await Promise.all([
-        axios.get('/api/auth/users'),
-        axios.get('/api/courses/admin/all')
+        axios.get('https://eduspark-nxre.onrender.com/api/auth/users'),
+        axios.get('https://eduspark-nxre.onrender.com/api/courses/admin/all')
       ]);
 
       const users = usersRes.data.users;

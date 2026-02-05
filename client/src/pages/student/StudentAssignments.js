@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../../contexts/AuthContext';
 import axios from 'axios';
@@ -16,26 +16,26 @@ const StudentAssignments = () => {
 
   useEffect(() => {
     fetchAssignments();
-  }, []);
+  }, [fetchAssignments]);
 
   // Refresh assignments when component mounts (useful when returning from quiz)
   useEffect(() => {
     const handleFocus = () => fetchAssignments();
     window.addEventListener('focus', handleFocus);
     return () => window.removeEventListener('focus', handleFocus);
-  }, []);
+  }, [fetchAssignments]);
 
   const fetchAssignments = async (showRefreshing = false) => {
     try {
       if (showRefreshing) setRefreshing(true);
 
       // Get enrolled courses first
-      const coursesRes = await axios.get('/api/courses/student/enrolled');
+      const coursesRes = await axios.get('https://eduspark-nxre.onrender.com/api/courses/student/enrolled');
       const enrolledCourses = coursesRes.data.courses;
 
       // Get assignments for each enrolled course
       const assignmentsPromises = enrolledCourses.map(course =>
-        axios.get(`/api/assignments/course/${course._id}`)
+        axios.get(`https://eduspark-nxre.onrender.com/api/assignments/course/${course._id}`)
       );
 
       const assignmentsResponses = await Promise.all(assignmentsPromises);

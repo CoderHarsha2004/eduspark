@@ -16,7 +16,7 @@ const AdminUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('/api/auth/users');
+      const response = await axios.get('https://eduspark-nxre.onrender.com/api/auth/users');
       setUsers(response.data.users);
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -27,7 +27,7 @@ const AdminUsers = () => {
 
   const handleUserStatusChange = async (userId, newStatus) => {
     try {
-      await axios.put(`/api/auth/users/${userId}/status`, { status: newStatus });
+      await axios.put(`https://eduspark-nxre.onrender.com/api/auth/users/${userId}/status`, { status: newStatus });
       // Update local state
       setUsers(users.map(u =>
         u._id === userId ? { ...u, status: newStatus } : u
@@ -40,7 +40,7 @@ const AdminUsers = () => {
   const handleDeleteUser = async (userId, userName) => {
     if (window.confirm(`Are you sure you want to delete user "${userName}"? This action cannot be undone.`)) {
       try {
-        await axios.delete(`/api/auth/users/${userId}`);
+        await axios.delete(`https://eduspark-nxre.onrender.com/api/auth/users/${userId}`);
         // Remove user from local state
         setUsers(users.filter(u => u._id !== userId));
         alert('User deleted successfully');

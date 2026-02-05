@@ -23,16 +23,16 @@ const StudentDashboard = () => {
   const fetchDashboardData = async () => {
     try {
       // Fetch enrolled courses
-      const enrolledResponse = await axios.get('/api/courses/student/enrolled');
+      const enrolledResponse = await axios.get('https://eduspark-nxre.onrender.com/api/courses/student/enrolled');
       const enrolledCourses = enrolledResponse.data.courses;
       setCourses(enrolledCourses);
 
       // Fetch all assignments for enrolled courses
-      const allAssignmentsResponse = await axios.get('/api/assignments/student/all');
+      const allAssignmentsResponse = await axios.get('https://eduspark-nxre.onrender.com/api/assignments/student/all');
       const allAssignments = allAssignmentsResponse.data.assignments;
 
       // Fetch assignment submissions
-      const submissionsResponse = await axios.get('/api/assignments/student/submissions');
+      const submissionsResponse = await axios.get('https://eduspark-nxre.onrender.com/api/assignments/student/submissions');
       const submissions = submissionsResponse.data.submissions;
 
       // Calculate stats

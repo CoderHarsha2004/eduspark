@@ -80,7 +80,7 @@ const CreateCourse = () => {
         instructor: user._id
       };
 
-      await axios.post('/api/courses', coursePayload);
+      await axios.post('https://eduspark-nxre.onrender.com/api/courses', coursePayload);
       setMessage('Course created successfully!');
       setTimeout(() => navigate('/faculty/dashboard'), 2000);
     } catch (error) {

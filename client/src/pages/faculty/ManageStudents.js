@@ -5,7 +5,7 @@ import axios from 'axios';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 const ManageStudents = () => {
-  const { user } = useAuth();
+  // Removed unused user variable
   const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState('');
   const [students, setStudents] = useState([]);
@@ -28,7 +28,7 @@ const ManageStudents = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get('/api/courses/faculty/my-courses');
+      const response = await axios.get('https://eduspark-nxre.onrender.com/api/courses/faculty/my-courses');
       const coursesData = response.data.courses;
       setCourses(coursesData);
 
@@ -55,7 +55,7 @@ const ManageStudents = () => {
 
   const fetchStudentsForCourse = async (courseId) => {
     try {
-      const response = await axios.get(`/api/courses/${courseId}`);
+      const response = await axios.get(`https://eduspark-nxre.onrender.com/api/courses/${courseId}`);
       const course = response.data.course;
       setStudents(course.enrolledStudents || []);
     } catch (error) {

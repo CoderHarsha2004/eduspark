@@ -37,7 +37,7 @@ const CreateAnnouncement = () => {
 
     setLoading(true);
     try {
-      await axios.post('/api/announcements', formData);
+      await axios.post('https://eduspark-nxre.onrender.com/api/announcements', formData);
       alert('Announcement created successfully!');
       navigate('/admin/dashboard');
     } catch (error) {

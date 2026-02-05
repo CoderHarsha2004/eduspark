@@ -25,9 +25,9 @@ const AdminDashboard = () => {
   const fetchDashboardData = async () => {
     try {
       const [usersRes, coursesRes, assignmentsRes] = await Promise.all([
-        axios.get('/api/auth/users'),
-        axios.get('/api/courses/published'),
-        axios.get('/api/assignments/faculty/stats')
+        axios.get('https://eduspark-nxre.onrender.com/api/auth/users'),
+        axios.get('https://eduspark-nxre.onrender.com/api/courses/published'),
+        axios.get('https://eduspark-nxre.onrender.com/api/assignments/faculty/stats')
       ]);
 
       const users = usersRes.data.users;

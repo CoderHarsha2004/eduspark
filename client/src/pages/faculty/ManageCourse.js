@@ -21,7 +21,7 @@ const ManageCourse = () => {
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
-  const [assignments, setAssignments] = useState([]);
+  // Removed unused assignments state
   const [studentsStats, setStudentsStats] = useState({
     totalEnrolled: 0,
     assignmentsCompleted: 0
@@ -29,7 +29,7 @@ const ManageCourse = () => {
 
   useEffect(() => {
     fetchCourse();
-  }, [courseId]);
+  }, [courseId, fetchCourse]);
 
   const fetchCourse = async () => {
     try {

@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext';
-import LoadingSpinner from '../../components/LoadingSpinner';
 
 const PostAnnouncement = () => {
-  const { user } = useAuth();
+  // Removed unused user variable
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,7 +22,7 @@ const PostAnnouncement = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get('/api/courses/my-courses');
+      const response = await axios.get('https://eduspark-nxre.onrender.com/api/courses/my-courses');
       setCourses(response.data.courses);
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -43,7 +42,7 @@ const PostAnnouncement = () => {
     setLoading(true);
 
     try {
-      await axios.post(`/api/courses/${formData.courseId}/announcements`, {
+      await axios.post(`https://eduspark-nxre.onrender.com/api/courses/${formData.courseId}/announcements`, {
         title: formData.title,
         content: formData.content,
         date: formData.date

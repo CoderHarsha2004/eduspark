@@ -29,7 +29,7 @@ const CreateQuizAssessment = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get('/api/courses/faculty/my-courses');
+      const response = await axios.get('https://eduspark-nxre.onrender.com/api/courses/faculty/my-courses');
       setCourses(response.data.courses);
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -177,7 +177,7 @@ const CreateQuizAssessment = () => {
 
       console.log('Submitting quiz assessment:', submitData);
 
-      const response = await axios.post('/api/assignments/quiz', submitData);
+      const response = await axios.post('https://eduspark-nxre.onrender.com/api/assignments/quiz', submitData);
 
       console.log('Quiz assessment created successfully:', response.data);
       navigate('/faculty/dashboard');

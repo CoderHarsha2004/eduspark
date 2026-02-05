@@ -17,11 +17,11 @@ const CourseView = () => {
 
   useEffect(() => {
     fetchCourse();
-  }, [courseId]);
+  }, [courseId, fetchCourse]);
 
   const fetchCourse = async () => {
     try {
-      const response = await axios.get(`/api/courses/${courseId}`);
+      const response = await axios.get(`https://eduspark-nxre.onrender.com/api/courses/${courseId}`);
       const courseData = response.data.course;
       setCourse(courseData);
 
@@ -53,7 +53,7 @@ const CourseView = () => {
 
   const handleEnroll = async () => {
     try {
-      await axios.post(`/api/courses/${courseId}/enroll`);
+      await axios.post(`https://eduspark-nxre.onrender.com/api/courses/${courseId}/enroll`);
       alert('Successfully enrolled in the course!');
       // Refresh course data to get updated enrollment status
       await fetchCourse();
@@ -76,7 +76,7 @@ const CourseView = () => {
         newCompletedLessons.push(lessonKey);
       }
 
-      await axios.put(`/api/courses/${courseId}/progress`, {
+      await axios.put(`https://eduspark-nxre.onrender.com/api/courses/${courseId}/progress`, {
         completedLessons: newCompletedLessons
       });
 
