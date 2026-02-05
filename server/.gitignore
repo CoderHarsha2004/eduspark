@@ -1,0 +1,44 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables
+.env
+.env.*
+
+# Mac system files
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Coverage directory
+coverage/
+
+# Misc
+*.tgz
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Uploads (if any)
+uploads/

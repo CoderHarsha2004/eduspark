@@ -1,0 +1,7 @@
+- [x] Update client/src/pages/faculty/CreateAnnouncement.js: Change 'Faculty Members' to 'Faculty' in the role display logic.
+- [x] Update client/src/pages/admin/CreateAnnouncement.js: Change 'Faculty Members' to 'Faculty' in the role display logic.
+- [x] Remove 'faculty' role from target audience array in client/src/pages/faculty/CreateAnnouncement.js.
+- [x] Add PWA manifest.json for mobile app-like experience
+- [x] Create service worker (sw.js) for offline functionality
+- [x] Register service worker in index.js
+- [ ] Add actual PNG icons (logo192.png and logo512.png) to client/public/ - currently placeholders needed
