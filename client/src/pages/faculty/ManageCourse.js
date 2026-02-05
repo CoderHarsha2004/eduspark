@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
@@ -27,11 +27,7 @@ const ManageCourse = () => {
     assignmentsCompleted: 0
   });
 
-  useEffect(() => {
-    fetchCourse();
-  }, [courseId, fetchCourse]);
-
-  const fetchCourse = async () => {
+  const fetchCourse = useCallback(async () => {
     try {
       const response = await axios.get(`/api/courses/${courseId}`);
       const course = response.data.course;
@@ -78,7 +74,11 @@ const ManageCourse = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [courseId]);
+
+  useEffect(() => {
+    fetchCourse();
+  }, [courseId, fetchCourse]);
 
   const handleCourseDataChange = (field, value) => {
     setCourseData(prev => ({ ...prev, [field]: value }));
