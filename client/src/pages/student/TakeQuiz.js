@@ -15,11 +15,7 @@ const TakeQuiz = () => {
   const [submitting, setSubmitting] = useState(false);
   const [submissionResult, setSubmissionResult] = useState(null);
 
-  useEffect(() => {
-    fetchAssignment();
-  }, [assignmentId, fetchAssignment]);
-
-  const fetchAssignment = async () => {
+  const fetchAssignment = React.useCallback(async () => {
     try {
       const response = await axios.get(`https://eduspark-nxre.onrender.com/api/assignments/${assignmentId}`);
       setAssignment(response.data.assignment);
@@ -40,7 +36,11 @@ const TakeQuiz = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [assignmentId]);
+
+  useEffect(() => {
+    fetchAssignment();
+  }, [assignmentId, fetchAssignment]);
 
   const handleAnswerChange = (questionIndex, value) => {
     setAnswers(prev => ({

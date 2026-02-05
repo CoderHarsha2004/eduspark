@@ -15,11 +15,7 @@ const CourseView = () => {
   const [progress, setProgress] = useState(0);
   const [completedLessons, setCompletedLessons] = useState([]);
 
-  useEffect(() => {
-    fetchCourse();
-  }, [courseId, fetchCourse]);
-
-  const fetchCourse = async () => {
+  const fetchCourse = React.useCallback(async () => {
     try {
       const response = await axios.get(`https://eduspark-nxre.onrender.com/api/courses/${courseId}`);
       const courseData = response.data.course;
@@ -49,7 +45,11 @@ const CourseView = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [courseId, user._id]);
+
+  useEffect(() => {
+    fetchCourse();
+  }, [courseId, fetchCourse]);
 
   const handleEnroll = async () => {
     try {

@@ -158,25 +158,14 @@ const StudentAssignments = () => {
                     : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
                 }`}
               >
-                {label} ({count})
-              </button>
-            ))}
-          </div>
-        </motion.div>
+                const { user } = useAuth();
+                const navigate = useNavigate();
+                const [assignments, setAssignments] = useState([]);
+                const [loading, setLoading] = useState(true);
+                const [filter, setFilter] = useState('all'); // all, pending, submitted, graded
+                const [refreshing, setRefreshing] = useState(false);
 
-        {/* Assignments List */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="space-y-4"
-        >
-          {filteredAssignments.length === 0 ? (
-            <div className="bg-white rounded-lg shadow p-12 text-center">
-              <span className="text-4xl mb-4 block">📝</span>
-              <h4 className="text-lg font-medium text-gray-900 mb-2">No assignments found</h4>
-              <p className="text-gray-500">
-                {filter === 'all'
+                const fetchAssignments = React.useCallback(async (showRefreshing = false) => {
                   ? "You don't have any assignments yet. Enroll in courses to see assignments here."
                   : `No ${filter} assignments found.`
                 }
@@ -219,7 +208,18 @@ const StudentAssignments = () => {
                               Grade: {assignment.submission.grade}/{assignment.maxPoints} points
                             </p>
                           )}
-                          {assignment.submission.feedback && (
+                }, [user._id]);
+
+                useEffect(() => {
+                  fetchAssignments();
+                }, [fetchAssignments]);
+
+                // Refresh assignments when component mounts (useful when returning from quiz)
+                useEffect(() => {
+                  const handleFocus = () => fetchAssignments();
+                  window.addEventListener('focus', handleFocus);
+                  return () => window.removeEventListener('focus', handleFocus);
+                }, [fetchAssignments]);
                             <p className="mt-2">Feedback: {assignment.submission.feedback}</p>
                           )}
                         </div>
