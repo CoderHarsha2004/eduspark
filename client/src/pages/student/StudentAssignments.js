@@ -95,7 +95,7 @@ const StudentAssignments = () => {
     }
   };
 
-  if (loarectifyding) {
+  if (loading) {
     return <LoadingSpinner />;
   }
 
